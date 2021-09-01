@@ -1,13 +1,22 @@
 class Thermostat {
   constructor() {
-    this.temperature = 20;
+    // this.startTemperature = 20;
+    this.minTemperature = 10;
+    this.temperature = 20
   }
 
-  increaseTemperature() {
-    this.temperature += 10
+  increaseTemperature(number) {
+    this.temperature += number
   }
 
+  decreaseTemperature(number) {
+    this.temperature -= number;
+    this.checkTemperature()
+  }
 
+  checkTemperature(){
+    if (this.temperature < this.minTemperature) {this.temperature = 10;}
+  }
 
 }
 

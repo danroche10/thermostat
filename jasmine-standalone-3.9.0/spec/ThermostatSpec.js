@@ -12,10 +12,24 @@ describe("Thermostat", function() {
     })
   })
 
-  describe('increaes temperature by value of argument passed in', function() { 
+  describe('increase temperature by value of argument passed in', function() { 
     it("temperature increases by 10 degrees", function() {
-      thermostat.increaseTemperature();
+      thermostat.increaseTemperature(10);
       expect(thermostat.temperature).toEqual(30)
+    })
+  })
+
+  describe('decrease temperature by value of argument passed in', function() { 
+    it("temperature decreases by 5 degrees", function() {
+      thermostat.decreaseTemperature(5);
+      expect(thermostat.temperature).toEqual(15)
+    })
+  })
+  
+  describe('minimum temperature', function() { 
+    it("should not go below 10", function() {
+      thermostat.decreaseTemperature(20);
+      expect(thermostat.temperature).toEqual(10)
     })
   })
 
