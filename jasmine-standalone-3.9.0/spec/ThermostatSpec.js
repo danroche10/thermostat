@@ -14,6 +14,7 @@ describe("Thermostat", function() {
 
   describe('increase temperature by value of argument passed in', function() { 
     it("temperature increases by 10 degrees", function() {
+      thermostat.togglePowerSaveMode();
       thermostat.increaseTemperature(10);
       expect(thermostat.temperature).toEqual(30)
     })
@@ -33,4 +34,33 @@ describe("Thermostat", function() {
     })
   })
 
+  describe('max temperature when power saving mode is on', function() { 
+    it("should not go above 25", function() {
+      thermostat.increaseTemperature(50);
+      expect(thermostat.temperature).toEqual(25)
+    })
+  })
+
+  describe('max temperature when power saving mode is off', function() { 
+    it("should not go above 32", function() {
+      thermostat.togglePowerSaveMode();
+      thermostat.increaseTemperature(50);
+      expect(thermostat.temperature).toEqual(32)
+    })
+  })
+
+  describe('powersaving mode is on by default but can be turned off', function() { 
+    it("should turn off", function() {
+      thermostat.togglePowerSaveMode();
+      expect(thermostat.powerSaveMode).toEqual("off")
+    })
+  })
+
+  describe('function that resets temperature to 20', function() { 
+    it("changes temperature to 20", function() {
+      thermostat.increaseTemperature(70);
+      thermostat.resetTemperature();
+      expect(thermostat.temperature).toEqual(20)
+    })
+  })
 })
