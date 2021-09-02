@@ -13,7 +13,7 @@ describe('Thermostat', function () {
 
   describe('increase temperature by value of argument passed in', function () {
     it('temperature increases by 10 degrees', function () {
-      thermostat.togglePowerSaveMode();
+      thermostat.powerSaveModeOff();
       thermostat.increaseTemperature(10);
       expect(thermostat.temperature).toEqual(30);
     });
@@ -42,7 +42,7 @@ describe('Thermostat', function () {
 
   describe('max temperature when power saving mode is off', function () {
     it('should not go above 32', function () {
-      thermostat.togglePowerSaveMode();
+      thermostat.powerSaveModeOff();
       thermostat.increaseTemperature(50);
       expect(thermostat.temperature).toEqual(32);
     });
@@ -50,8 +50,14 @@ describe('Thermostat', function () {
 
   describe('powersaving mode is on by default but can be turned off', function () {
     it('should turn off', function () {
-      thermostat.togglePowerSaveMode();
+      thermostat.powerSaveModeOff();
       expect(thermostat.powerSaveMode).toEqual('off');
+    });
+
+    it('powersaving mode can be turned on when it is off', function () {
+      thermostat.powerSaveModeOff();
+      thermostat.powerSaveModeOn();
+      expect(thermostat.powerSaveMode).toEqual('on');
     });
   });
 
@@ -74,7 +80,7 @@ describe('Thermostat', function () {
     })
 
     it("reutrn correct decription for high energy usage", function() {
-      thermostat.togglePowerSaveMode();
+      thermostat.powerSaveModeOff();
       thermostat.increaseTemperature(6);
       expect(thermostat._currentEnergyUsage()).toEqual("high-usage")
     })

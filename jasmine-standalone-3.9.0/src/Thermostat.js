@@ -21,16 +21,26 @@ class Thermostat {
     this._checkTemperature();
   }
 
-  togglePowerSaveMode() {
-    if (this.powerSaveMode === 'off') {
-      this.powerSaveMode = 'on';
-    } else if (this.powerSaveMode === 'on') {
-      this.powerSaveMode = 'off';
-    }
+  powerSaveModeOn() {
+    this.powerSaveMode = 'on';
+  }
+
+  powerSaveModeOff() {
+    this.powerSaveMode = 'off';
   }
 
   resetTemperature() {
     this.temperature = this.START_TEMP;
+  }
+
+  currentEnergyUsage() {
+    if (this.temperature < this.TEMP_LOW_ENERGY_USAGE) {
+      return 'low-usage';
+    } else if (this.temperature <= this.TEMP_MEDIUM_ENERGY_USAGE) {
+      return 'medium-usage';
+    } else {
+      return 'high-usage';
+    }
   }
 
   _isPowerSaveModeOn() {
@@ -54,16 +64,6 @@ class Thermostat {
       this.temperature > this.MAX_TEMP_OFF
     ) {
       this.temperature = this.MAX_TEMP_OFF;
-    }
-  }
-
-  _currentEnergyUsage() {
-    if (this.temperature < this.TEMP_LOW_ENERGY_USAGE) {
-      return 'low-usage';
-    } else if (this.temperature <= this.TEMP_MEDIUM_ENERGY_USAGE) {
-      return 'medium-usage';
-    } else {
-      return 'high-usage';
     }
   }
 }
