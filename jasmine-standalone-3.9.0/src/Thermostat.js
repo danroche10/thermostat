@@ -2,8 +2,8 @@ class Thermostat {
   constructor() {
     this.MAX_TEMP_ON = 25;
     this.MAX_TEMP_OFF = 32;
-    this.TEMP_LOW_ENERGY_USAGE = 18
-    this.TEMP_MEDIUM_ENERGY_USAGE = 25
+    this.TEMP_LOW_ENERGY_USAGE = 18;
+    this.TEMP_MEDIUM_ENERGY_USAGE = 25;
     this.MIN_TEMP = 10;
     this.minTemperature = this.MIN_TEMP;
     this.START_TEMP = 20;
@@ -58,14 +58,12 @@ class Thermostat {
   }
 
   _currentEnergyUsage() {
-    if(this.temperature < this.TEMP_LOW_ENERGY_USAGE  ) { return "low-usage"}
-    else if (this.temperature <= this.TEMP_MEDIUM_ENERGY_USAGE ) { return "medium-usage"}
-    else { return "high-usage"}
+    if (this.temperature < this.TEMP_LOW_ENERGY_USAGE) {
+      return 'low-usage';
+    } else if (this.temperature <= this.TEMP_MEDIUM_ENERGY_USAGE) {
+      return 'medium-usage';
+    } else {
+      return 'high-usage';
+    }
   }
-
 }
-
-
-
-
-
