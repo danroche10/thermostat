@@ -59,12 +59,6 @@ describe('Thermostat', function () {
     it('changes temperature to 20', function () {
       thermostat.increaseTemperature(70);
       thermostat.resetTemperature();
-<<<<<<< HEAD
-      expect(thermostat.temperature).toEqual(20);
-    });
-  });
-});
-=======
       expect(thermostat.temperature).toEqual(20)
     })
   })
@@ -72,21 +66,17 @@ describe('Thermostat', function () {
   describe('tells user the current energy usage', function() { 
     it("reutrn correct decription for low energy usage", function() {
       thermostat.decreaseTemperature(5);
-      expect(thermostat.currentEnergyUsage()).toEqual("low-usage")
+      expect(thermostat._currentEnergyUsage()).toEqual("low-usage")
     })
 
     it("reutrn correct decription for medium energy usage", function() {
-      expect(thermostat.currentEnergyUsage()).toEqual("medium-usage")
+      expect(thermostat._currentEnergyUsage()).toEqual("medium-usage")
     })
 
     it("reutrn correct decription for high energy usage", function() {
       thermostat.togglePowerSaveMode();
       thermostat.increaseTemperature(6);
-      expect(thermostat.currentEnergyUsage()).toEqual("high-usage")
+      expect(thermostat._currentEnergyUsage()).toEqual("high-usage")
     })
-
-
-
   })
 })
->>>>>>> d01f69afc8c244bdf5c2dc9f142c642ab567874c
