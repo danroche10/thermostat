@@ -54,4 +54,20 @@ class Thermostat {
       this.temperature = this.MAX_TEMP_OFF;
     }
   }
+<<<<<<< HEAD
 }
+=======
+
+  currentEnergyUsage() {
+    if(this.temperature < 18 ) { return "low-usage"}
+    else if (this.temperature <= 25 ) { return "medium-usage"}
+    else { return "high-usage"}
+  }
+
+}
+
+
+
+
+
+>>>>>>> d01f69afc8c244bdf5c2dc9f142c642ab567874c
