@@ -1,6 +1,3 @@
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const updateTemperature = () => {
     document.querySelector('#temperature').innerText = thermostat.temperature;
@@ -8,10 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   
   const thermostat = new Thermostat();
-  const weatherApi = new WeatherApi("London");
-  weatherApi.updateWeather();
- 
-  updateTemperature();
+
+    const weatherApi = new WeatherApi();
+    weatherApi.updateWeather("London");
+    weatherApi.updateWeather("Liverpool");
+    updateTemperature();
+
+  document.querySelector('#change-city').addEventListener('click', () => {
+    weatherApi.updateWeather("New York");
+  });
+
+
 
   document.querySelector('#increase-temp').addEventListener('click', () => {
     thermostat.increaseTemperature(1);
