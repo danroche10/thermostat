@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const thermostat = new Thermostat();
 
     const weatherApi = new WeatherApi();
-    weatherApi.updateWeather("London");
-    weatherApi.updateWeather("Liverpool");
+
+    weatherApi.updateWeather(document.getElementById('cityInput').value);
+
     updateTemperature();
 
-  document.querySelector('#change-city').addEventListener('click', () => {
-    weatherApi.updateWeather("New York");
+  document.querySelector('#cityInput').addEventListener('change', () => {
+    weatherApi.updateWeather(document.querySelector('#cityInput').value);
   });
 
 

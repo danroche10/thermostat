@@ -9,7 +9,7 @@ class WeatherApi{
     return fetch(self.apiUrl)
     .then(response => response.json())
     .then((weatherResponse) => {
-      document.querySelector('#cityWeather').innerText = city + ": " + weatherResponse.main.temp.toString() + "C";
+      document.querySelector('#cityWeather').innerText = weatherResponse.main.temp.toString() + "C";
       return weatherResponse.main.temp;
     })
   }
