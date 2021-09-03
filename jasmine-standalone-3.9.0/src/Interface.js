@@ -1,3 +1,11 @@
+
+let test = fetch("http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=6b2e036ea921ff6952dc7d6f0aa908b5")
+.then(response => response.json())
+.then((weatherResponse) => {
+  return weatherResponse.main.temp
+})
+console.log(test);
+
 document.addEventListener('DOMContentLoaded', () => {
   const updateTemperature = () => {
     document.querySelector('#temperature').innerText = thermostat.temperature;
