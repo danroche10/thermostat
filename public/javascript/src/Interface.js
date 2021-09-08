@@ -4,19 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#temperature').className = thermostat.currentEnergyUsage();
   };
   
-  const thermostat = new Thermostat();
-
+    const thermostat = new Thermostat();
     const weatherApi = new WeatherApi();
-
-    weatherApi.updateWeather(document.getElementById('cityInput').value);
-
+    weatherApi.updateWeather(document.querySelector('#cityInput').value);
     updateTemperature();
 
   document.querySelector('#cityInput').addEventListener('change', () => {
     weatherApi.updateWeather(document.querySelector('#cityInput').value);
   });
-
-
 
   document.querySelector('#increase-temp').addEventListener('click', () => {
     thermostat.increaseTemperature(1);

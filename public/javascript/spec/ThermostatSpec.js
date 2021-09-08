@@ -72,17 +72,17 @@ describe('Thermostat', function () {
   describe('tells user the current energy usage', function() { 
     it("reutrn correct decription for low energy usage", function() {
       thermostat.decreaseTemperature(5);
-      expect(thermostat._currentEnergyUsage()).toEqual("low-usage")
+      expect(thermostat.currentEnergyUsage()).toEqual("low-usage")
     })
 
     it("reutrn correct decription for medium energy usage", function() {
-      expect(thermostat._currentEnergyUsage()).toEqual("medium-usage")
+      expect(thermostat.currentEnergyUsage()).toEqual("medium-usage")
     })
 
     it("reutrn correct decription for high energy usage", function() {
       thermostat.powerSaveModeOff();
       thermostat.increaseTemperature(6);
-      expect(thermostat._currentEnergyUsage()).toEqual("high-usage")
+      expect(thermostat.currentEnergyUsage()).toEqual("high-usage")
     })
   })
 })
