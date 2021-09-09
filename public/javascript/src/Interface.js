@@ -3,11 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async function result() {
       const result = await thermostat.getCurrentTemperature();
       document.querySelector('#temperature').innerText = result.temperature;
-      document.querySelector('#temperature').className = thermostat.currentEnergyUsage();
+      document.querySelector('#temperature').className = await thermostat.currentEnergyUsage();
     }
     result();
   };
-  
     const thermostat = new Thermostat();
     const weatherApi = new WeatherApi();
     weatherApi.updateWeather(document.querySelector('#cityInput').value);
@@ -18,8 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelector('#increase-temp').addEventListener('click', () => {
-    thermostat.increaseTemperature(1);
-    updateTemperature();  
+    async function result() {
+      await thermostat.increaseTemperature(1);
+      updateTemperature();  
+    }
+    result();
   });
 
   document.querySelector('#decrease-temp').addEventListener('click', () => {

@@ -16,24 +16,30 @@ class Thermostat {
       .then(response => response.json())
   };
 
-  increaseTemperature(number) {
-    return fetch('/temperature', {
+  async updateTemperature(temp_change) {
+    let current_temp = await this.getCurrentTemperature();
+    current_temp.temperature += temp_change
+
+    fetch('/temperature', {
       method: 'POST',
-      body: {temperature: number + 1}
-    })
-      .then(response => console.log(response.json()));
-  }
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      mode: 'cors',
+      cache: 'default',
+      body: JSON.stringify({
+        "temperature": current_temp.temperature 
+      })
+    });
+}
+  increaseTemperature(temp_change) {
+    this.updateTemperature(temp_change);
+    this._checkTemperature();
+}
 
-
-
-
-  // increaseTemperature(number) {
-  //   this.temperature += number;
-  //   this._checkTemperature();
-  // }
-
-  decreaseTemperature(number) {
-    this.temperature -= number;
+  decreaseTemperature(temp_change) {
+    let temp_decrease = temp_change*-1
+    this.updateTemperature(temp_decrease);
     this._checkTemperature();
   }
 
@@ -49,10 +55,11 @@ class Thermostat {
     this.temperature = this.START_TEMP;
   }
 
-  currentEnergyUsage() {
-    if (this.temperature < this.TEMP_LOW_ENERGY_USAGE) {
+  async currentEnergyUsage() {
+    let current_temp = await this.getCurrentTemperature();
+    if (current_temp.temperature < this.TEMP_LOW_ENERGY_USAGE) {
       return 'low-usage';
-    } else if (this.temperature <= this.TEMP_MEDIUM_ENERGY_USAGE) {
+    } else if (current_temp.temperature <= this.TEMP_MEDIUM_ENERGY_USAGE) {
       return 'medium-usage';
     } else {
       return 'high-usage';
