@@ -12,3 +12,4 @@ class Thermostat
   def update(temperature)
     @temperature = temperature
   end
+end
