@@ -12,26 +12,9 @@ class Thermostat {
   }
 
   getCurrentTemperature() {
-    fetch('/temperature')
-    .then(response => response.json())
-    .then((temperatureResponse) => {
-      console.log(temperatureResponse.temperature)
-    })
-    //   method: "GET",
-    //   // body: JSON.stringify(data),
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   credentials: "same-origin"
-    // }).then(function(response) {
-    //   console.log(response);     //=> number 100–599
-    //   response.statusText //=> String
-    //   response.headers    //=> Headers
-    //   response.url        //=> String
-    // }, function(error) {
-    //   error.message //=> String
-    // })
-  }
+    return fetch('/temperature')
+      .then(response => response.json())
+  };
 
   increaseTemperature(number) {
     this.temperature += number;

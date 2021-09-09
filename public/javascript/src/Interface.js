@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   const updateTemperature = () => {
-    document.querySelector('#temperature').innerText = thermostat.getCurrentTemperature();
-    document.querySelector('#temperature').className = thermostat.currentEnergyUsage();
+    async function result() {
+      const result = await thermostat.getCurrentTemperature();
+      document.querySelector('#temperature').innerText = result.temperature;
+      document.querySelector('#temperature').className = thermostat.currentEnergyUsage();
+    }
+    result();
   };
   
     const thermostat = new Thermostat();
