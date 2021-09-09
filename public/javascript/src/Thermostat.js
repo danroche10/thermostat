@@ -17,9 +17,20 @@ class Thermostat {
   };
 
   increaseTemperature(number) {
-    this.temperature += number;
-    this._checkTemperature();
+    return fetch('/temperature', {
+      method: 'POST',
+      body: {temperature: number + 1}
+    })
+      .then(response => console.log(response.json()));
   }
+
+
+
+
+  // increaseTemperature(number) {
+  //   this.temperature += number;
+  //   this._checkTemperature();
+  // }
 
   decreaseTemperature(number) {
     this.temperature -= number;
